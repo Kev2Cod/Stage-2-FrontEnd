@@ -1,12 +1,13 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
 import Image from "../assets/img/profile1.png";
 import HistoryTransaction from "../components/HistoryTransaction";
+import user from '../components/DataDummy/Users'
 
 const ProfilePage = () => {
+
   return (
-    <div className="container" style={{marginTop: '8rem'}}>
+    <div className="container mt-3">
       <Container className='mt-2'>
         <Row className="text-sm-center text-lg-start">
           <Col className="col-sm-12 col-md-12 col-lg-4">

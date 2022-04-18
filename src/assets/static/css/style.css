@@ -109,3 +109,9 @@
   background-color: #fff3cd82;
   border: 3px solid #FFF3CD;
 }
+
+.form-select-category{
+  width: max-content;
+  height: 50px;
+  border: 1px solid white;
+}

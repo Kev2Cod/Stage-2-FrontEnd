@@ -1,24 +1,25 @@
-import React from "react";
+import {React, useState} from "react";
 import '../assets/static/css/navbar.css'
 import IconDumbmers from "../assets/img/icon/icon-dumb-merch.png";
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
-  const isLogin = true
+  const [isLogin, setIsLogin] = useState(true);
+  const [showAdmin, setShowAdmin] = useState(true);
+  // const [showUser, setShowUser] = useState(false);
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-dark navbar-height">
+    {isLogin ? <nav className="navbar navbar-expand-lg navbar-dark navbar-height">
         <div className="container">
-          <a className="navbar-brand" href="#">
-            <img src={IconDumbmers} alt="icon-navbar" width="50px" />
+          <a className="navbar-brand" href="/">
+            <img src={IconDumbmers} alt="icon-navbar" width="45px" />
           </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse text-center" id="navbarNav">
             <ul className="navbar-nav ms-auto">
-                
               <li className="nav-item">
               <NavLink className="nav-link fw-bold" 
               to="/complain"
@@ -27,27 +28,36 @@ const Navbar = () => {
               })}
               >Complain</NavLink>
               </li>
-
-              <li className="nav-item">
+              
+              {showAdmin ? <li className="nav-item">
               <NavLink className="nav-link fw-bold" 
               to="/list-category"
               style={({ isActive }) => ({
                 color: isActive ? '#F74D4D' : '#ffffff'
               })}
               >Category</NavLink>
-              </li>
-
-              <li className="nav-item">
+              </li> : ''}
+              
+              {showAdmin ? <li className="nav-item">
               <NavLink className="nav-link fw-bold" 
               to="/list-product"
               style={({ isActive }) => ({
                 color: isActive ? '#F74D4D' : '#ffffff'
               })}
               >Product</NavLink>
-              </li>
+              </li> : ''}
+              
               
               <li className="nav-item">
-                
+              <NavLink className="nav-link fw-bold" 
+              to="/profile-page"
+              style={({ isActive }) => ({
+                color: isActive ? '#F74D4D' : '#ffffff'
+              })}
+              >Profile</NavLink>
+              </li>
+
+              <li className="nav-item">
               <NavLink className="nav-link fw-bold" 
               to="/login"
               style={({ isActive }) => ({
@@ -60,6 +70,8 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+    : '' }
+
     </>
   );
 };

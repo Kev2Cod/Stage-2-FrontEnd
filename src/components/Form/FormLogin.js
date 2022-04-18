@@ -1,5 +1,5 @@
 import React from "react";
-// import { users } from "../DataDummy/Users";
+import { users } from "../DataDummy/Users";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
@@ -10,41 +10,37 @@ export const FormLogin = () => {
 
   const [emailLog, setEmaillog] = useState("");
   const [passwordLog, setPasswordlog] = useState("");
+
   const [isLogin, setIsLogin] = useState(false);
 
   const [flag, setFlag] = useState(false);
 
-  // Get data dari local storage
-  const data = localStorage.getItem("user");
-  const dataUser = JSON.parse(data);
-
-  // useEffect(() => {
-  //   let login = isLogin
-  //   console.log(login)
-  // },[isLogin])
-
-  // const dataUser = users;
+  const dataUser = users;
+  console.log(dataUser)
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-      if (emailLog !== dataUser.email && passwordLog !== dataUser.password) {
-        console.log("Email/password belum terdaftar");
-        setFlag(true);
-      } else if (emailLog !== dataUser.email || passwordLog !== dataUser.password) {
-        console.log("Email/password salah");
-        setFlag(true);
-      } else {
-        setIsLogin(true);
-        setFlag(false);
-        navigate("/");
-        console.log("Berhasil LOGIN!");
-      }
-  };
 
+    const isAuth = users.find((user) => user.email === emailLog)
+
+    if(isAuth) {
+      if(isAuth.password !==  passwordLog){
+        setFlag(true)
+        console.log("password Salah")
+      } else{
+        setIsLogin(true)
+        setFlag(false)
+        navigate('/')
+        console.log("Berhasil Login")
+      }
+    }else{
+      console.log("Email Tidak Ada")
+      setFlag(true)
+    }
+  };
 
   return (
     <>
-    <PrivateRoute status={isLogin}/>
       <div className="card border-red text-end mb-5 rounded-3">
         <div className="card-body bg-var-dark p-4">
           <h3 className="text-start mb-3 ">Login</h3>
@@ -62,6 +58,7 @@ export const FormLogin = () => {
               </Alert>
             )}
             <button className="btn bg-var-red text-white fw-bold container">Login</button>
+            
           </form>
         </div>
       </div>

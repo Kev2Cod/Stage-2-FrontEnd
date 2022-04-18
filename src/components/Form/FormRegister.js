@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { users } from '../DataDummy/Users'
 
 const FormRegister = () => {
   const navigate = useNavigate();
@@ -18,16 +19,12 @@ const FormRegister = () => {
     });
   };
 
-  // useEffect(() => {
-  //   if(register){
-  //     console.log(register)
-  //   }
-  // },[register])
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
-    localStorage.setItem('user', JSON.stringify(register))
+    users.push(register)
+    console.log(users)
+    // localStorage.setItem('user', JSON.stringify(register))
     navigate('/login')
   };
 

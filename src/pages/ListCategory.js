@@ -1,13 +1,15 @@
 import React from "react";
+import { useEffect } from "react";
 import { products } from "../components/DataDummy/Products";
 
 import ListCategoryComponent from "../components/List/ListCategoryComponent";
 
 const Category = () => {
+  
   // source:  https://stackoverflow.com/questions/70265468/best-way-to-group-an-array-with-property-of-object-and-how-to-render-the-result
 
   const categoryProducts = products.reduce((acc, product) => {
-    const categoryIndex = acc.findIndex((item) => item.name == product.category);
+    const categoryIndex = acc.findIndex((item) => item.name === product.category);
     if (categoryIndex > -1) {
       acc[categoryIndex].products.push(product);
     } else {
@@ -15,6 +17,7 @@ const Category = () => {
     }
     return acc;
   }, []);
+
 
   return (
     <div className="container mt-4">
